@@ -42,36 +42,10 @@ public class Main {
                     }
                 }
                 case 3 : {
-                    System.out.print("Índice del producto a modificar: ");
-                    indice = scanner.nextInt();
-                    scanner.nextLine();
-                    if (indice < 0 || indice >= productos.size()) {
-                        System.out.println("Índice no válido");
-                    } else {
-                        System.out.print("Nuevo nombre del producto (deja vacío para no modificar): ");
-                        String nuevoNombre = scanner.nextLine();
-                        System.out.print("Nuevo precio del producto (deja 0 para no modificar): ");
-                        double nuevoPrecio = scanner.nextDouble();
-                        scanner.nextLine();
-                        Producto productoAModificar = productos.get(indice);
-                        if (!nuevoNombre.isEmpty()) {
-                            productoAModificar.setNombre(nuevoNombre);
-                        }
-                        if (nuevoPrecio != 0) {
-                            productoAModificar.setPrecio(nuevoPrecio);
-                        }
-
-                        System.out.println("Producto modificado correctamente");
-                    }
+                    modificarProducto();
                 }
                 case 4 : {
-                    System.out.println("=== Listado de productos ===");
-                    for (int i = 0; i < productos.size(); i++) {
-                        Producto productoAMostrar = productos.get(i);
-                        System.out.println(i + ". " + productoAMostrar.getNombre() + " - $" + productoAMostrar.getPrecio());
-                    }
-
-                    System.out.println("============================");
+                    listaProductos();
                 }
                 case 5 : System.out.println("¡Hasta luego!");
                 default : System.out.println("Opción no válida");
@@ -103,5 +77,37 @@ public class Main {
         public void setPrecio(double precio) {
             this.precio = precio;
         }
+    }
+    public static void modificarProducto(){
+        System.out.print("Índice del producto a modificar: ");
+        indice = scanner.nextInt();
+        scanner.nextLine();
+        if (indice < 0 || indice >= productos.size()) {
+            System.out.println("Índice no válido");
+        } else {
+            System.out.print("Nuevo nombre del producto (deja vacío para no modificar): ");
+            String nuevoNombre = scanner.nextLine();
+            System.out.print("Nuevo precio del producto (deja 0 para no modificar): ");
+            double nuevoPrecio = scanner.nextDouble();
+            scanner.nextLine();
+            Producto productoAModificar = productos.get(indice);
+            if (!nuevoNombre.isEmpty()) {
+                productoAModificar.setNombre(nuevoNombre);
+            }
+            if (nuevoPrecio != 0) {
+                productoAModificar.setPrecio(nuevoPrecio);
+            }
+
+            System.out.println("Producto modificado correctamente");
+        }
+    }
+    public static void listaProductos(){
+        System.out.println("=== Listado de productos ===");
+        for (int i = 0; i < productos.size(); i++) {
+            Producto productoAMostrar = productos.get(i);
+            System.out.println(i + ". " + productoAMostrar.getNombre() + " - $" + productoAMostrar.getPrecio());
+        }
+
+        System.out.println("============================");
     }
 }
